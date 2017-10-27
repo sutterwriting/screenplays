@@ -147,7 +147,7 @@ header.masthead {
   min-height: auto;
   text-align: center;
   color: white;
-  background-image: url("/Users/family/Jared/Documents/coding/Html/personal\ website/once.jpg");
+  background-image: url("../personal\ website/once.jpg");
   background-position: center !important;
   -webkit-background-size: cover;
   -moz-background-size: cover;
