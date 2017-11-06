@@ -253,6 +253,46 @@
         </div>
       </div>
     </section>
+    <script>
+    var OAUTH2_CLIENT_ID = '708864717362-1aq7opqjp9brrc8kad1eetih38llp7j0.apps.googleusercontent.com';
+    var OAUTH2_SCOPES = [
+      'https://www.googleapis.com/auth/youtube'
+    ];
+    googleApiClientReady = function() {
+      gapi.auth.init(function() {
+        window.setTimeout(checkAuth, 1);
+      });
+    }
+    function checkAuth() {
+      gapi.auth.authorize({
+        client_id: "708864717362-1aq7opqjp9brrc8kad1eetih38llp7j0.apps.googleusercontent.com",
+        scope: OAUTH2_SCOPES,
+        immediate: true
+      }, handleAuthResult);
+    }
+
+    function handleAuthResult(authResult) {
+      if (authResult && !authResult.error) {
+        $('.pre-auth').hide();
+        $('.post-auth').show();
+        loadAPIClientInterfaces();
+      } else {
+        $('#login-link').click(function() {
+          gapi.auth.authorize({
+            client_id: "708864717362-1aq7opqjp9brrc8kad1eetih38llp7j0.apps.googleusercontent.com",
+            scope: OAUTH2_SCOPES,
+            immediate: false
+            }, handleAuthResult);
+        });
+      }
+    }
+    function loadAPIClientInterfaces() {
+      gapi.client.load('youtube', 'v3', function() {
+        handleAPILoaded();
+      });
+    }
+    auth.js
+    </script>
     <a href="https://www.facebook.com/jaredsutteractor/" target="blank"><img src="Facebook_f_logo_2013.jpg" class="centerTable" style="size:10px"/></a>
     <a href="https://www.youtube.com/channel/UCM92byAyjQDzPuKeyfoYPGQ" target="blank"><img src="Flurry_YouTube_Alt.png" class="centerTable" style="size:10px"/></a>
     <!-- Bootstrap core JavaScript -->
@@ -265,7 +305,5 @@
 
     <!-- Custom scripts for this template -->
     <script src="js/creative.min.js"></script>
-
   </body>
-
 </html>
